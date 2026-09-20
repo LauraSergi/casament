@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laura & Sergi · 11.09.2027</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Variables ───────────────────────────────────────────── */
+    :root {
+      --cream:     #f5f0e8;
+      --parchment: #ede4d3;
+      --sand:      #d4bc9a;
+      --terracotta:#c17a56;
+      --olive:     #7a8c5e;
+      --moss:      #5a6b42;
+      --brown:     #6b4f38;
+      --dark:      #3a2e25;
+      --white:     #fdfaf5;
+    }
+
+    /* ── Reset & Base ────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+    }
+
+    section { padding: 80px 24px; }
+
+    .section-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--brown);
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: var(--sand);
+      margin: 0 auto 40px;
+    }
+
+    /* ── Nav ─────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+
+    nav.scrolled {
+      background: rgba(245, 240, 232, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--sand);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--white);
+      transition: color 0.4s;
+    }
+
+    nav.scrolled .nav-logo { color: var(--brown); }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.3s;
+    }
+
+    nav.scrolled .nav-links a { color: var(--dark); }
+    .nav-links a:hover { color: var(--terracotta) !important; }
+	  nav.scrolled a[href="en.html"] { color: var(--dark) !important; }
+nav.scrolled span[style*="rgba(255,255,255,0.6)"] { color: var(--sand) !important; }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: background 0.4s;
+      border-radius: 2px;
+    }
+
+    nav.scrolled .nav-hamburger span { background: var(--dark); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(245,240,232,0.97);
+      z-index: 200;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      text-decoration: none;
+      color: var(--brown);
+    }
+
+    .mobile-menu .close-btn {
+      position: absolute;
+      top: 20px; right: 24px;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--dark);
+      background: none;
+      border: none;
+    }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    #hero {
+      min-height: 85svh;
+      background:
+        linear-gradient(to bottom, rgba(40,30,20,0.45) 0%, rgba(40,30,20,0.25) 50%, rgba(40,30,20,0.6) 100%),
+        url('portada fons.png') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 20px;
+    }
+
+    #hero h1 {
+      font-size: clamp(3.5rem, 12vw, 8rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.05;
+      letter-spacing: 2px;
+    }
+
+    #hero h1 .amp {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--sand);
+    }
+
+    #hero h2 {
+      font-size: clamp(1.1rem, 3vw, 1.6rem);
+      font-weight: 300;
+      color: var(--sand);
+      margin: 20px 0 32px;
+      letter-spacing: 4px;
+    }
+
+    #hero p {
+      max-width: 520px;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.6);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.4);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0%, 100% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+      50%       { opacity: 0.3; }
+    }
+
+    /* Botanical SVG decorations */
+    .botanical {
+      position: absolute;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .hero-botanical-left {
+      bottom: 60px; left: -20px;
+      width: clamp(120px, 20vw, 220px);
+      transform: rotate(15deg);
+    }
+
+    .hero-botanical-right {
+      top: 80px; right: -20px;
+      width: clamp(100px, 18vw, 200px);
+      transform: rotate(-20deg) scaleX(-1);
+    }
+
+    /* ── TIMELINE ────────────────────────────────────────────── */
+    #timeline {
+      background: var(--white);
+      text-align: center;
+    }
+
+    .timeline-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--sand);
+      transform: translateX(-50%);
+    }
+
+    .timeline-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .t-item {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 24px;
+      padding: 32px 0;
+      position: relative;
+    }
+
+    .t-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--terracotta);
+      text-align: right;
+      line-height: 1;
+    }
+
+    .t-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--olive);
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 1px var(--olive);
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .t-content {
+      text-align: left;
+    }
+
+    .t-content h3 {
+      font-size: 1.3rem;
+      color: var(--brown);
+      margin-bottom: 4px;
+    }
+
+    .t-content p {
+      font-size: 0.9rem;
+      color: #7a6e62;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* Mobile timeline */
+    @media (max-width: 600px) {
+      .timeline-line { left: 20px; }
+
+      .t-item {
+        grid-template-columns: auto 1fr;
+        gap: 16px;
+        padding-left: 40px;
+      }
+
+      .t-time {
+        display: none;
+      }
+
+      .t-dot { grid-column: 1; }
+      .t-content { grid-column: 2; }
+
+      .t-content h3::before {
+        content: attr(data-time) ' – ';
+        color: var(--terracotta);
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1rem;
+      }
+    }
+
+    /* ── LOCATION ────────────────────────────────────────────── */
+    #location {
+      background: var(--parchment);
+      text-align: center;
+    }
+
+    .location-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .location-card {
+      background: var(--white);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 4px 40px rgba(100,80,60,0.1);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .location-img {
+      min-height: 320px;
+      background:
+        linear-gradient(rgba(60,40,20,0.3), rgba(60,40,20,0.2)),
+        url('Cal simo.jpg') center/cover no-repeat;
+    }
+
+    .location-text {
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+    }
+
+    .location-text h2 {
+      font-size: 2.2rem;
+      color: var(--brown);
+      margin-bottom: 8px;
+    }
+
+    .location-text .venue {
+      font-size: 1.1rem;
+      color: var(--terracotta);
+      margin-bottom: 24px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--olive);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.3s, transform 0.2s;
+      align-self: flex-start;
+    }
+
+    .btn:hover {
+      background: var(--moss);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--terracotta);
+      font-size: 13px;
+      letter-spacing: 4px;
+      padding: 18px 48px;
+      align-self: center;
+    }
+
+    .btn-primary:hover { background: var(--brown); }
+
+    .map-wrap {
+      margin-top: 32px;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(100,80,60,0.1);
+    }
+
+    .map-wrap iframe {
+      width: 100%;
+      height: 320px;
+      border: 0;
+      display: block;
+    }
+
+    @media (max-width: 680px) {
+      .location-card { grid-template-columns: 1fr; }
+      .location-img { min-height: 220px; }
+      .location-text { padding: 32px 24px; text-align: center; }
+      .btn { align-self: center; }
+    }
+
+    /* ── ALLOTJAMENT ─────────────────────────────────────────── */
+    #allotjament {
+      background: var(--white);
+      text-align: center;
+    }
+
+    .allot-inner {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .allot-inner p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #5a4f44;
+      margin-bottom: 24px;
+    }
+
+    .allot-furgo {
+      background: var(--cream);
+      border-left: 3px solid var(--olive);
+      padding: 20px 24px;
+      text-align: left;
+      border-radius: 0 4px 4px 0;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .allot-furgo .icon {
+      font-size: 1.8rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .allot-furgo p {
+      margin: 0;
+      font-size: 0.97rem;
+    }
+
+    /* ── DRESS CODE ──────────────────────────────────────────── */
+    #dresscode {
+      background: var(--parchment);
+      text-align: center;
+    }
+
+    .dress-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .dress-card {
+      background: var(--white);
+      padding: 40px 32px;
+      border-radius: 4px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dress-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 4px;
+    }
+
+    .dress-card.sergi::before { background: var(--brown); }
+    .dress-card.laura::before { background: var(--terracotta); }
+
+    .dress-card .who {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .dress-card.sergi .who { color: var(--brown); }
+    .dress-card.laura .who { color: var(--terracotta); }
+
+    .dress-card h3 {
+      font-size: 1.6rem;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+
+    .dress-card p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: #5a4f44;
+    }
+
+    .dress-palette {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .swatch {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.8);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+      title: '';
+    }
+
+    .dress-warning {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fdf6ee;
+      border: 1px solid var(--sand);
+      border-radius: 4px;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-align: left;
+    }
+
+    .dress-warning .warn-icon { font-size: 1.6rem; flex-shrink: 0; }
+
+    .dress-warning p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--dark);
+    }
+
+    .dress-warning strong { color: var(--terracotta); }
+
+    @media (max-width: 640px) {
+      .dress-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── CONFIRMACIÓ ─────────────────────────────────────────── */
+    #confirmacio {
+      min-height: 60vh;
+      background:
+        linear-gradient(rgba(40,30,20,0.55), rgba(40,30,20,0.55)),
+        url('foto-final.png') center/cover no-repeat fixed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 24px;
+    }
+
+    #confirmacio h2 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    #confirmacio p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.05rem;
+      margin-bottom: 40px;
+      max-width: 480px;
+      line-height: 1.8;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+
+    footer .footer-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--sand);
+      margin-bottom: 8px;
+    }
+
+    /* ── Scroll reveal ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+<nav id="mainNav">
+    <div class="nav-logo">L & S</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#timeline">Horaris</a></li>
+      <li><a href="#location">Lloc</a></li>
+      <li><a href="#allotjament">Allotjament</a></li>
+      <li><a href="#dresscode">Dress Code</a></li>
+      <li><a href="#confirmacio">Confirmar</a></li>
+    </ul>
+    <!-- BOTONERA IDIOMA I HAMBURGUESA -->
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="font-size: 12px; font-weight: 500; letter-spacing: 2px;">
+        <span style="color: var(--terracotta);">CAT</span> 
+        <span style="color: rgba(255,255,255,0.6); margin: 0 4px;">|</span> 
+        <a href="en.html" style="color: rgba(255,255,255,0.85); text-decoration: none;">EN</a>
+      </div>
+      <div class="nav-hamburger" id="hamburger" onclick="openMenu()" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" onclick="closeMenu()">✕</button>
+    <a href="#timeline"    onclick="closeMenu()">Horaris</a>
+    <a href="#location"    onclick="closeMenu()">El Lloc</a>
+    <a href="#allotjament" onclick="closeMenu()">Allotjament</a>
+    <a href="#dresscode"   onclick="closeMenu()">Dress Code</a>
+    <a href="#confirmacio" onclick="closeMenu()">Confirmar</a>
+    
+    <!-- BOTONERA IDIOMA MÒBIL -->
+    <div style="margin-top: 24px; font-family: 'Jost', sans-serif; font-size: 1rem; letter-spacing: 3px;">
+      <span style="color: var(--terracotta); font-weight: 500;">CAT</span> 
+      <span style="color: var(--sand); margin: 0 8px;">|</span> 
+      <a href="en.html" style="font-family: 'Jost', sans-serif; font-size: 1rem; color: var(--dark);">EN</a>
+    </div>
+  </div>
+
+<section id="hero">
+    <img src="logo-white.png" alt="Laura & Sergi" style="max-width: 120px; margin-top: -120px; margin-bottom: 24px; filter: drop-shadow(0px 8px 16px rgba(60, 40, 20, 0.15));">
+    <p class="hero-eyebrow">&nbsp;</p>
+    <p class="hero-eyebrow">us convidem al nostre casament</p>
+<h1 style="font-family: 'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif;">Laura <span class="amp">&</span> Sergi</h1>
+    <p>&nbsp;</p>
+  <p>&nbsp;</p>
+    <p>Us convidem a un dia de bon menjar i molta festa.</p>
+<p> Tenim moltes ganes de celebrar-ho amb tu!</p>
+    <div class="hero-scroll">Descobreix més</div>
+  </section>
+
+  <section id="timeline">
+    <p class="section-label reveal">El dia</p>
+    <h2 class="section-title reveal">Els Horaris</h2>
+    <div class="divider reveal"></div>
+
+    <div class="timeline-wrap">
+      <div class="timeline-line"></div>
+      <div class="timeline-items">
+
+        <div class="t-item reveal">
+          <div class="t-time">18.30 h</div>
+          <div class="t-dot"></div>
+          <div class="t-content">
+            <h3 data-time="19:00h">Arribada puntual i aperitiu</h3>
+           
+          </div>
+        </div>
+
+        <div class="t-item reveal">
+          <div class="t-time">20 h</div>
+          <div class="t-dot"></div>
+          <div class="t-content">
+            <h3 data-time="20:00h">Sopar</h3>
+          </div>
+        </div>
+
+        <div class="t-item reveal">
+          <div class="t-time">22 h</div>
+          <div class="t-dot"></div>
+          <div class="t-content">
+            <h3 data-time="22:00h">Que comenci la festa!</h3>
+            
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="location">
+    <p class="section-label reveal">On?</p>
+    <h2 class="section-title reveal">El Lloc</h2>
+    <div class="divider reveal"></div>
+
+    <div class="location-inner reveal">
+      <div class="location-card">
+        <div class="location-img"></div>
+        <div class="location-text">
+          <h2>Masia Can Simó</h2>
+          <p class="venue">Sitges, Barcelona</p>
+          <p style="font-size:0.97rem;line-height:1.8;color:#5a4f44;margin-bottom:28px;"> Una masia per fer la festa a la nostra manera. Porteu banyador que té piscina! </p>
+          <p style="font-size:0.97rem;line-height:1.8;color:#5a4f44;margin-bottom:28px;">⟟ Fondo de les Alsines 109 Diseminado can coll 45, 08811 Canyelles, Barcelona, Spain&nbsp;</p>
+<a class="btn" href="https://www.google.com/maps/place/MASIA+CAL+SIM%C3%93.+Allotjament+Rural+Lic+PB+000402/@41.2791329,1.6995268,854m/data=!3m1!1e3!4m9!3m8!1s0x12a4786d9a20764b:0x813489793ff3c872!5m2!4m1!1i2!8m2!3d41.2793934!4d1.7076611!16s%2Fg%2F11b75j7c2h?entry=ttu&g_ep=EgoyMDI2MDkxNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">
+  Com arribar-hi →
+</a>
+        </div>
+      </div>
+
+      <div class="map-wrap">
+  <iframe
+    src="https://www.google.com/maps?q=41.2793934,1.7076611&z=16&output=embed"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    title="Masia Cal Simó, Canyelles">
+  </iframe>
+</div>
+    </div>
+  </section>
+
+  <section id="allotjament">
+    <p class="section-label reveal">I la nit?</p>
+    <h2 class="section-title reveal">Després de la festa</h2>
+    <div class="divider reveal"></div>
+
+    <div class="allot-inner reveal">
+      <p>
+       La casa té pocs llits. Si vens de fora i necessites un lloc per dormir, fes-nos-ho saber. </br> Més endavant ja us ajudarem a fer <em>match</em> de cotxes perquè tothom tingui com arribar-hi.
+
+		  
+      </p>
+
+      <div class="allot-furgo">
+        <div class="icon">🚐</div>
+        <p>
+          Si teniu furgos i voleu dormir-hi allà, teniu espai de sobres per fer-ho! Dieu-nos-ho també al formulari d'assistència.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="dresscode">
+    <p class="section-label reveal">Estètica</p>
+    <h2 class="section-title reveal">Dress Code</h2>
+    <div class="divider reveal"></div>
+
+    <div class="dress-grid">
+
+      <div class="dress-card sergi reveal">
+        <p class="who">Team Sergi</p>
+        <h3><em>Traje</em> i corbata</h3>
+        <p>
+          Com sabeu, als amics del Sergi us toca pringar... L'única norma de tota la festa és que porteu <em>traje</em>, corbata i sabates (bambes prohibides). Sense excepcions 😏 </br> Amigues: veniu com volgueu, sempre aneu perfectes.😊 
+        </p>
+      </div>
+
+      <div class="dress-card laura reveal">
+        <p class="who">Team Laura</p>
+        <h3>Com vulgueu!</h3>
+        <p>
+         Amics de la Laura... com vulgueu! Veniu per sentir-vos els més preciosos de la nit. (només preferiblement no de blanc pls)
+        </p>
+       
+      </div>
+
+    </div>
+
+    <div class="dress-warning reveal">
+      <div class="warn-icon">⚠️</div>
+      <p><strong>Atenció amb els talons d'agulla:</strong> la festa és en una masia, així que tingueu en compte el terreny per no patir! </p>
+    </div>
+  </section>
+
+  <section id="confirmacio">
+    <h2 class="reveal">Hi sereu?</h2>
+    <p class="reveal">
+      Confirmeu la vostra assistència abans de l' <strong style="color:var(--sand)">1 de novembre de 2026</strong>.<br/>
+      Al formulari també hi podreu indicar al·lèrgies, intoleràncies i qualsevol altre suggeriment.
+    </p>
+    <a class="btn btn-primary reveal"
+       href="https://forms.google.com"
+       target="_blank"
+       rel="noopener">
+      Confirmar assistència
+    </a>
+  </section>
+
+  <footer>
+    <div class="footer-names">Laura & Sergi</div>
+    <p>11 de setembre de 2027 · Masia Can Simó, Sitges</p>
+    <p style="margin-top:8px;font-size:0.78rem;">Amb tot l'amor del món 🌿</p>
+  </footer>
+
+  <script>
+    // ── Nav scroll ──────────────────────────────────────────
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ── Mobile menu ─────────────────────────────────────────
+    function openMenu()  { document.getElementById('mobileMenu').classList.add('open'); document.body.style.overflow='hidden'; }
+    function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); document.body.style.overflow=''; }
+
+    // ── Show hamburger on mobile ─────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+
+    function checkNav() {
+      if (window.innerWidth <= 700) {
+        hamburger.style.display = 'flex';
+        navLinks.style.display  = 'none';
+      } else {
+        hamburger.style.display = 'none';
+        navLinks.style.display  = 'flex';
+        closeMenu();
+      }
+    }
+    checkNav();
+    window.addEventListener('resize', checkNav);
+
+    // ── Scroll reveal ────────────────────────────────────────
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
