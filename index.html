@@ -110,8 +110,8 @@
 
     nav.scrolled .nav-links a { color: var(--dark); }
     .nav-links a:hover { color: var(--terracotta) !important; }
-	  nav.scrolled a[href="en.html"] { color: var(--dark) !important; }
-nav.scrolled span[style*="rgba(255,255,255,0.6)"] { color: var(--sand) !important; }
+    nav.scrolled a[href="en.html"] { color: var(--dark) !important; }
+    nav.scrolled span[style*="rgba(255,255,255,0.6)"] { color: var(--sand) !important; }
 
     .nav-hamburger {
       display: none;
@@ -175,7 +175,7 @@ nav.scrolled span[style*="rgba(255,255,255,0.6)"] { color: var(--sand) !importan
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 120px 24px 80px;
+      padding: 160px 24px 80px; /* Ajustat el padding per donar espai */
       position: relative;
     }
 
@@ -202,6 +202,15 @@ nav.scrolled span[style*="rgba(255,255,255,0.6)"] { color: var(--sand) !importan
       color: var(--sand);
     }
 
+    .hero-date {
+      font-family: 'Jost', sans-serif;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-weight: 400;
+      letter-spacing: 6px;
+      color: var(--sand);
+      margin: 15px 0 30px;
+    }
+
     #hero h2 {
       font-size: clamp(1.1rem, 3vw, 1.6rem);
       font-weight: 300;
@@ -210,18 +219,17 @@ nav.scrolled span[style*="rgba(255,255,255,0.6)"] { color: var(--sand) !importan
       letter-spacing: 4px;
     }
 
-    #hero p {
+    #hero p.hero-text {
       max-width: 520px;
       font-size: 1rem;
       line-height: 1.8;
       color: rgba(255,255,255,0.85);
+      margin-bottom: 10px;
     }
 
     .hero-scroll {
-      position: absolute;
-      bottom: 36px;
-      left: 50%;
-      transform: translateX(-50%);
+      position: relative;
+      margin-top: 60px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -242,7 +250,7 @@ nav.scrolled span[style*="rgba(255,255,255,0.6)"] { color: var(--sand) !importan
 
     @keyframes scrollLine {
       0%, 100% { opacity: 1; transform: scaleY(1); transform-origin: top; }
-      50%       { opacity: 0.3; }
+      50%        { opacity: 0.3; }
     }
 
     /* Botanical SVG decorations */
@@ -696,19 +704,20 @@ nav.scrolled span[style*="rgba(255,255,255,0.6)"] { color: var(--sand) !importan
     <div style="margin-top: 24px; font-family: 'Jost', sans-serif; font-size: 1rem; letter-spacing: 3px;">
       <span style="color: var(--terracotta); font-weight: 500;">CAT</span> 
       <span style="color: var(--sand); margin: 0 8px;">|</span> 
-      <a href="en.html" style="font-family: 'Jost', sans-serif; font-size: 1rem; color: var(--dark);">EN</a>
+      <a href="en.html" style="font-family: 'Jost', sans-serif; font-size: 1rem; color: var(--dark); text-decoration: none;">EN</a>
     </div>
   </div>
 
 <section id="hero">
-    <img src="logo-white.png" alt="Laura & Sergi" style="max-width: 120px; margin-top: -120px; margin-bottom: 24px; filter: drop-shadow(0px 8px 16px rgba(60, 40, 20, 0.15));">
-    <p class="hero-eyebrow">&nbsp;</p>
+    <img src="logo-white.png" alt="Laura & Sergi" style="max-width: 120px; margin-top: -80px; margin-bottom: 24px; filter: drop-shadow(0px 8px 16px rgba(60, 40, 20, 0.15));">
     <p class="hero-eyebrow">us convidem al nostre casament</p>
-<h1 style="font-family: 'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif;">Laura <span class="amp">&</span> Sergi</h1>
-    <p>&nbsp;</p>
-  <p>&nbsp;</p>
-    <p>Us convidem a un dia de bon menjar i molta festa.</p>
-<p> Tenim moltes ganes de celebrar-ho amb vosaltres!</p>
+    
+    <h1 style="font-family: 'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif;">Laura <span class="amp">&</span> Sergi</h1>
+    <div class="hero-date">11.09.2027</div>
+    
+    <p class="hero-text">Us convidem a un dia de bon menjar i molta festa.</p>
+    <p class="hero-text">Tenim moltes ganes de celebrar-ho amb vosaltres!</p>
+    
     <div class="hero-scroll">Descobreix més</div>
   </section>
 
@@ -726,7 +735,6 @@ nav.scrolled span[style*="rgba(255,255,255,0.6)"] { color: var(--sand) !importan
           <div class="t-dot"></div>
           <div class="t-content">
             <h3 data-time="18:30h">Arribada puntual i aperitiu</h3>
-           
           </div>
         </div>
 
@@ -743,7 +751,6 @@ nav.scrolled span[style*="rgba(255,255,255,0.6)"] { color: var(--sand) !importan
           <div class="t-dot"></div>
           <div class="t-content">
             <h3 data-time="22:00h">Que comenci la festa!</h3>
-            
           </div>
         </div>
 
@@ -790,8 +797,6 @@ nav.scrolled span[style*="rgba(255,255,255,0.6)"] { color: var(--sand) !importan
     <div class="allot-inner reveal">
       <p>
        La casa té pocs llits. Si vens de fora i necessites un lloc per dormir, fes-nos-ho saber. </br> Més endavant ja us ajudarem a fer <em>match</em> de cotxes perquè tothom tingui com arribar-hi.
-
-		  
       </p>
 
       <div class="allot-furgo">
